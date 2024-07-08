@@ -1,0 +1,54 @@
+.nav {
+    display: flex;
+    width: 100%;
+    height: 100px;
+}
+
+.logo {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em 5em;
+    width: 40%;
+  
+}
+#logo{
+    background-image:url("images/littlelemonlogo.png") ;
+    background-size: cover;
+    width:260px;
+    height: 70px;
+}
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 4em;
+    margin-top: 1em;
+    text-align: center;
+    width: 60%;
+}
+
+ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin: 1em;
+}
+
+nav,
+#a{
+    font-family: Karla, sans-serif;
+    font-weight: 800;
+    list-style: none;
+    text-decoration: none;
+}
+
+#a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#a.active {
+    background-color: #04AA6D;
+    color: white;
+}
