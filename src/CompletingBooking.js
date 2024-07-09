@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 const CompletingBooking = () => {
     const navigate = useNavigate()
     const location = useLocation();
-    const { firstName, lastName, email, phone, dateBooking, timeRange, radioGroup, table } = location.state;
+    const { firstName, lastName, email, phone, dateBooking, timeRange, radioGroup, table,place,occasions } = location.state;
     const gotToNewPage = () => {
         navigate("/");
     }
@@ -28,6 +28,8 @@ const CompletingBooking = () => {
                             <p><strong>Time:</strong> {timeRange}</p>
                             <p><strong>Meal:</strong> {radioGroup}</p>
                             <p><strong>Table:</strong> {table}</p>
+                            <p><strong>Place:</strong> {place}</p>
+                            <p><strong>Occasions:</strong> {occasions}</p>
                         </div>
                     </div>
                     <div>

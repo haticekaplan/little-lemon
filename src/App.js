@@ -7,10 +7,12 @@ import Login from './Login';
 import { UserProvider } from './UserInfo';
 import Booking from './Booking';
 import CompletingBooking from './CompletingBooking';
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route,Router } from "react-router-dom";
+import ErrorBoundary from './ErrorBoundary';
 const App= ()=> {
   return (
-    <UserProvider>
+    <ErrorBoundary>
+    <Router>
       <Routes>
         <Route path="/" element={ <Header/>}/>
         <Route path="/NavLittleLemon" element={<NavLittleLemon/>}/>
@@ -20,7 +22,9 @@ const App= ()=> {
         <Route path="/Footer" element={<Footer/>}/>
         <Route path="/CompletingBooking" element={<CompletingBooking/>}/>
       </Routes>
-    </UserProvider>
+      </Router>
+      </ErrorBoundary>
+   
   );
 }
 

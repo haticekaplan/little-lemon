@@ -15,7 +15,7 @@
     text-align: center;
     align-items:center;
     justify-content: center;
-    padding: 10px;
+    padding: 8px;
   font-family: 'Karla', Tahoma, Geneva, Verdana, sans-serif;
    width: 500px;
     height: 800px;
@@ -25,8 +25,8 @@
 }
 .completing-title{
     text-align: center;
-    font-size: 32px;
+    font-size: 28px;
 }
 .completing-body{
-    font-size:22px;
+    font-size:20px;
 }

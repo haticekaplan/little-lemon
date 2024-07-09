@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const Booking = () => {
     const [submitting, setSubmitting] = useState(false);
     const bookingTable = ["For two person", "For four person", "For six person", "For eight person"];
+    const occasionsList=["Aniversary","Birthday","Engagement"];
     const navigate = useNavigate();
     const initialState = {
         dateBooking: new Date().toISOString().split('T')[0], // Initial value for date as today
@@ -31,7 +32,9 @@ const Booking = () => {
         lastName: "",
         email: "",
         table: "",
+        occasions:"",
         radioGroup: "",
+        place:"",
         phone: "",
     };
 
@@ -41,7 +44,9 @@ const Booking = () => {
         email: Yup.string().email("Invalid email").required("Required"),
         phone: Yup.string().min(10, "You entered an incomplete number!").max(13, "Wrong!").required("Required"),
         table: Yup.string().required("Please select a table").oneOf(bookingTable, "Invalid table selection"),
+        occasions:Yup.string().optional(),
         radioGroup: Yup.string().required("Please select a meal option"),
+        place:Yup.string().required("Please select a place"),
     });
 
     const onSubmit = async (values, { setSubmitting }) => {
@@ -74,6 +79,11 @@ const Booking = () => {
             {table}
         </option>
     ));
+    const occasion = occasionsList.map((option, key) => (
+        <option value={option} key={key}>
+            {option}
+        </option>
+    ));
 
     const renderError = (message) => <p className="help is-danger">{message}</p>;
 
@@ -87,14 +97,14 @@ const Booking = () => {
                                 <span className="booking-span">
                                     Select Date
                                     <ErrorMessage name="dateBooking" render={renderError} />
-                                    <Field type="date" name="dateBooking" onChange={(e) => dispatch({ type: 'UPDATE_DATE', payload: e.target.value })} />
+                                    <Field type="date" name="dateBooking" className="booking-date" onChange={(e) => dispatch({ type: 'UPDATE_DATE', payload: e.target.value })} />
                                 </span>
                             </div>
                             <div className="booking-div">
                                 <span className="booking-span">
                                 Select Time
                                     <ErrorMessage name="timeRange" render={renderError} />
-                                    <Field as="select" name="timeRange" onChange={(e) => dispatch({ type: 'UPDATE_TIME', payload: e.target.value })}>
+                                    <Field as="select" name="timeRange" className="booking-date" onChange={(e) => dispatch({ type: 'UPDATE_TIME', payload: e.target.value })}>
                                         <option value="">Select a time</option>
                                         {state.dateBooking === new Date().toISOString().split('T')[0] ? (
                                             <>
@@ -134,6 +144,7 @@ const Booking = () => {
                                     </label>
                                 </div>
                             </div>
+                            
                             <div className="booking-table">
                                 Select Table
                                 <ErrorMessage name="table" render={renderError} />
@@ -145,6 +156,35 @@ const Booking = () => {
                                 >
                                     <option value="">Select a table</option>
                                     {tableOptions}
+                                </Field>
+                            </div>
+                            <div className="booking-check">
+                                <span className={"booking-span" + (errors.radioGroup && touched.radioGroup ? " is-invalid" : "")}>
+                                    Select Place
+                                    <ErrorMessage name="place" render={renderError} />
+                                </span>
+                                <div className="booking-input" id="place">
+                                    <label>
+                                        <Field type="radio" value="outdoor" name="place" id="place1" />
+                                        Outdoor
+                                    </label>
+                                    <br></br>
+                                    <label>
+                                        <Field type="radio" value="indoor" name="place" id="place2" />
+                                      Indoor
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="booking-table">
+                                Occasions
+                                <Field
+                                    as="select"
+                                    name="occasions"
+                                    id="occasions"
+                                    className="booking-table-select" 
+                                >
+                                    <option value="">Occasions</option>
+                                    {occasion}
                                 </Field>
                             </div>
                             <div className="booking-review">
