@@ -4,11 +4,11 @@ import NavLittleLemon from "./NavLittleLemon"
 import Footer from "./Footer"
 const Header = ()=>{
 return (
-    <>
+    <header>
     <NavLittleLemon/>
     <Main/>
     <Footer/>
-    </>
+    </header>
     
 )
 }

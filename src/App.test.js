@@ -1,19 +1,23 @@
-import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+// App.test.js
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-afterEach(() => {
-  cleanup();
+test('renders reserve a table link', async () => {
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+
+  const linkElement = await screen.findByText(/reserve a table/i);
+  expect(linkElement).toBeInTheDocument();
 });
 
-test('renders learn react link', async () => {
-  render(<App />);
-  
-  try {
-    const linkElement = await screen.findByRole('heading', { name: /learn react/i }, { timeout: 15000 });
-    expect(linkElement).toBeInTheDocument();
-  } catch (error) {
-    // Timeout veya element bulunamama durumunda hata mesajını göster
-    console.error(error);
-  }
-});
+
+
+
+
+
+
+
